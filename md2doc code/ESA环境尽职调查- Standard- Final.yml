@@ -1,0 +1,1987 @@
+app:
+  description: 基于ASTM E1527-21的ESA报告生成
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: ESA环境尽职调查- v2
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.11@35bcd3f233f99d07bdadef8b326945df3bda5e8f773330144bc90d84800336b9
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/minimax:0.0.12@edec9f40df2229a0a10a21690242eef0d74fe7a2f2b8765eb32737552cd926b2
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: code
+      id: e-1771917764244-preprocessing
+      selected: false
+      source: '1771917764244'
+      sourceHandle: source
+      target: preprocessing
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: start
+        targetType: llm
+      id: e-1771917764244-module2_site
+      selected: false
+      source: '1771917764244'
+      sourceHandle: source
+      target: module2_site
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: code
+        targetType: llm
+      id: e-preprocessing-module2_site
+      selected: false
+      source: preprocessing
+      sourceHandle: source
+      target: module2_site
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: start
+        targetType: llm
+      id: e-1771917764244-module3_historical
+      selected: false
+      source: '1771917764244'
+      sourceHandle: source
+      target: module3_historical
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: code
+        targetType: llm
+      id: e-preprocessing-module3_historical
+      selected: false
+      source: preprocessing
+      sourceHandle: source
+      target: module3_historical
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: start
+        targetType: llm
+      id: e-1771917764244-module4_recon
+      selected: false
+      source: '1771917764244'
+      sourceHandle: source
+      target: module4_recon
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: code
+        targetType: llm
+      id: e-preprocessing-module4_recon
+      selected: false
+      source: preprocessing
+      sourceHandle: source
+      target: module4_recon
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: start
+        targetType: llm
+      id: e-1771917764244-1771918464293
+      selected: false
+      source: '1771917764244'
+      sourceHandle: source
+      target: '1771918464293'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: code
+        targetType: llm
+      id: e-preprocessing-1771918464293
+      selected: false
+      source: preprocessing
+      sourceHandle: source
+      target: '1771918464293'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: llm
+      id: e-module2_site-1771918464293
+      selected: false
+      source: module2_site
+      sourceHandle: source
+      target: '1771918464293'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: llm
+      id: e-module3_historical-1771918464293
+      selected: false
+      source: module3_historical
+      sourceHandle: source
+      target: '1771918464293'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: llm
+      id: e-module4_recon-1771918464293
+      selected: false
+      source: module4_recon
+      sourceHandle: source
+      target: '1771918464293'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: if-else
+      id: e-1771918464293-phase2_ifelse
+      selected: false
+      source: '1771918464293'
+      sourceHandle: source
+      target: phase2_ifelse
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: code
+      id: e-phase2_ifelse-phase2_no
+      selected: false
+      source: phase2_ifelse
+      sourceHandle: 'false'
+      target: phase2_no
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: variable-aggregator
+      id: e-module6_phase2-phase2_empty
+      selected: false
+      source: module6_phase2
+      sourceHandle: source
+      target: phase2_empty
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: code
+        targetType: variable-aggregator
+      id: e-phase2_no-phase2_empty
+      selected: false
+      source: phase2_no
+      sourceHandle: source
+      target: phase2_empty
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: llm
+      id: e-phase2_empty-module7_risk
+      selected: false
+      source: phase2_empty
+      sourceHandle: source
+      target: module7_risk
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: llm
+      id: e-module7_risk-module_risk_table
+      selected: false
+      source: module7_risk
+      sourceHandle: source
+      target: module_risk_table
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: llm
+      id: e-module_risk_table-module8_conclusion
+      selected: false
+      source: module_risk_table
+      sourceHandle: source
+      target: module8_conclusion
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: llm
+      id: e-module8_conclusion-module1_executive
+      selected: false
+      source: module8_conclusion
+      sourceHandle: source
+      target: module1_executive
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: code
+      id: e-module1_executive-report_merge
+      selected: false
+      source: module1_executive
+      sourceHandle: source
+      target: report_merge
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: phase2_ifelse-case_true-module6_phase2-target
+      source: phase2_ifelse
+      sourceHandle: case_true
+      target: module6_phase2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: http-request
+      id: report_merge-source-1772347826454-target
+      source: report_merge
+      sourceHandle: source
+      target: '1772347826454'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1772347826454-source-1772348718748-target
+      source: '1772347826454'
+      sourceHandle: source
+      target: '1772348718748'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1772348718748-source-1771919309655-target
+      source: '1772348718748'
+      sourceHandle: source
+      target: '1771919309655'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 项目信息输入
+        type: start
+        variables:
+        - default: ESA-2024-TEST-001
+          hint: ''
+          label: 报告编号
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: report_no
+        - default: 上海虹桥工业园区3号厂房
+          hint: ''
+          label: 场地名称
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: property_name
+        - default: 上海市闵行区虹桥路888号
+          hint: ''
+          label: 场地地址
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: property_address
+        - default: 上海宏远置业有限公司
+          hint: ''
+          label: 委托方名称
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: client_name
+        - default: '2024-03-15'
+          hint: ''
+          label: 评估日期
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: assessment_date
+        - default: '2024-04-01'
+          hint: ''
+          label: 报告日期
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: report_date
+        - default: 李明 / Li Ming, REP, ASTM E1527-21 Certified
+          hint: ''
+          label: 执行EP姓名
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: ep_name
+        - default: 2.3亩 / 0.153 ha
+          hint: ''
+          label: 用地面积
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: site_area
+        - default: 闲置工业厂房（原机械加工）
+          hint: ''
+          label: 现状用途
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: current_use
+        - default: 北：住宅小区（200m）；南：在建商业综合体；东：市政道路；西：农田
+          hint: ''
+          label: 周边用地情况
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: surrounding_land_use
+        - default: 1985-2010年：金属零件机械加工厂，使用切削油、冷却液及溶剂型清洗剂（含三氯乙烯TCE）。2010-2018年：汽车零部件喷漆车间，使用醇酸树脂漆、固化剂及稀释剂（含苯、甲苯、二甲苯）。2018年至今：厂房闲置，设备已搬走，残留少量油桶及废液桶。
+          hint: ''
+          label: 历史使用摘要
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: historical_use_summary
+        - default: 上海市危险废物申报数据库：该地块2005-2018年有危废申报记录，主要为废矿物油（HW08）和废有机溶剂（HW06）。全国污染地块信息系统：未见该地块列入疑似污染地块名单。周边500m内有1处历史加油站（已关闭，2019年完成土壤修复）。
+          hint: ''
+          label: 数据库检索结果
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: db_search_results
+        - default: '2024-03-10'
+          hint: ''
+          label: 数据库检索日期
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: db_search_date
+        - default: '2024-03-15'
+          hint: ''
+          label: 现场勘察日期
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: recon_date
+        - default: 主厂房（约1200㎡）：地面为混凝土地坪，可见多处油渍污染，颜色呈深棕色，面积约50㎡，主要集中于原加工设备区。设备间：残留2个200L铁桶，标签模糊，桶底有渗漏痕迹，气味刺激（疑似有机溶剂）。喷漆车间旧址：墙面可见喷漆残留，通风管道锈蚀严重，地面排水沟内有固化油漆残留。储罐区：露天区域有2个地上储罐基础（储罐已移除），土壤颜色异常（深色），有轻微油味。
+          hint: ''
+          label: 现场观察记录
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: site_observations
+        - default: 'no'
+          hint: ''
+          label: 是否开展PhaseII
+          options:
+          - 'yes'
+          - 'no'
+          placeholder: ''
+          required: true
+          type: select
+          variable: phase2_conducted
+        - default: ''
+          hint: ''
+          label: PhaseII采样数据
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: phase2_sampling_data
+        - default: HQ-2024-03-888
+          hint: ''
+          label: 地块编号
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: parcel_no
+        - default: 约2800㎡（主厂房1200㎡+辅助用房1600㎡）
+          hint: ''
+          label: 建筑面积
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: building_area
+        - default: 1984年
+          hint: ''
+          label: 建造年代
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: year_built
+        - default: 现状工业用地M2，规划变更为商业住宅用地R2+C2
+          hint: ''
+          label: 区划分类
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: zoning
+        - default: 西北方向约300m处有一处历史化工厂遗址（已拆除），地下水流向为由西北向东南，该遗址存在向本地块迁移的潜在风险。
+          hint: ''
+          label: 周边污染场地
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: nearby_sites
+        - default: 晴，气温18°C，东南风2级
+          hint: ''
+          label: 勘察天气
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: weather_conditions
+        - default: 业主代表王先生，物业管理员张先生
+          hint: ''
+          label: 陪同人员
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: accompanied_by
+        - default: 厂房北侧地下室因积水无法进入；部分区域堆放大量废旧设备，仅目视检查，未能进入。
+          hint: ''
+          label: 访问限制
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: access_limitations
+        - default: 上海市《建设用地土壤污染风险管控标准》（DB31/T 1063-2021）第二类用地筛选值
+          hint: ''
+          label: 适用筛选标准
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: screening_criteria
+        - default: 本项目为商业用地收购尽调，买方计划开发住宅+商业综合体。地块现状为工业用地，需完成土地性质变更，环境调查为变更前置条件。
+          hint: ''
+          label: 交易特殊情况
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: special_considerations
+        - default: zh
+          hint: zh=中文报告 | en=English Report
+          label: 报告语言 / Report Language
+          max_length: 100
+          options:
+          - zh
+          - en
+          placeholder: ''
+          required: false
+          type: select
+          variable: report_language
+      height: 811
+      id: '1771917764244'
+      position:
+        x: -63.28627235040082
+        y: 10.92825747663069
+      positionAbsolute:
+        x: -63.28627235040082
+        y: 10.92825747663069
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 3000
+            temperature: 0.2
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        prompt_template:
+        - role: system
+          text: '/no_think
+
+            你是ASTM E1527-21执业EP，任务：撰写第5章正文（Phase I核心法律文件）。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            输出示例结构：
+
+            ### 5.1 发现汇总
+
+            正文段落（不超过150字）...
+
+
+            ### 5.2 REC分类
+
+
+            **REC-1 名称**
+
+            污染物类型：xxx
+
+            来源推断：xxx
+
+            扩散路径：xxx
+
+            受体：xxx
+
+            分类依据：ASTM E1527-21 第xx条
+
+
+            **REC-2 名称**
+
+            （同上格式）
+
+
+            ### 5.3 非范围事项
+
+            正文...
+
+
+            ### 5.4 Phase II建议
+
+            建议/不建议开展Phase II，理由：...'
+        - role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            【场地描述】
+
+            {{#module2_site.text#}}
+
+
+            【历史使用】
+
+            {{#module3_historical.text#}}
+
+
+            【现场勘察】
+
+            {{#module4_recon.text#}}
+
+
+            筛选标准：{{#1771917764244.screening_criteria#}}
+
+            特殊情况：{{#1771917764244.special_considerations#}}
+
+            请撰写第5章正文。'
+        reasoning_format: separated
+        selected: false
+        title: 模块五-REC判断
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1771918464293'
+      position:
+        x: 355.917946093859
+        y: 449.5713230986132
+      positionAbsolute:
+        x: 355.917946093859
+        y: 449.5713230986132
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - report_merge
+          - final_report
+          value_type: string
+          variable: markdown_report
+        - value_selector:
+          - '1772348718748'
+          - download_url
+          value_type: string
+          variable: docx_result
+        - value_selector:
+          - '1772348718748'
+          - filename
+          value_type: string
+          variable: filename
+        selected: false
+        title: 报告输出
+        type: end
+      height: 140
+      id: '1771919309655'
+      position:
+        x: 2144.4724494247093
+        y: 144.82485027439813
+      positionAbsolute:
+        x: 2144.4724494247093
+        y: 144.82485027439813
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 2000
+            temperature: 0.3
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        prompt_template:
+        - role: system
+          text: '/no_think
+
+            你是ASTM E1527-21执业EP，任务：撰写第2章正文。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            输出示例结构（标题用实际语言，内容用实际数据）：
+
+            ### 2.1 场地概况
+
+            正文段落...
+
+
+            ### 2.2 现状用途与条件
+
+            正文段落...
+
+
+            ### 2.3 周边环境
+
+            正文段落...
+
+
+            ### 2.4 规划与监管背景
+
+            正文段落...'
+        - role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            地块编号：{{#1771917764244.parcel_no#}}
+
+            建筑面积：{{#1771917764244.building_area#}}
+
+            建造年代：{{#1771917764244.year_built#}}
+
+            规划用途：{{#1771917764244.zoning#}}
+
+            周边场地：{{#1771917764244.nearby_sites#}}
+
+            请撰写第2章正文。'
+        reasoning_format: separated
+        selected: false
+        title: 模块二-场地描述
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module2_site
+      position:
+        x: 300
+        y: -150
+      positionAbsolute:
+        x: 300
+        y: -150
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 2500
+            temperature: 0.3
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        prompt_template:
+        - role: system
+          text: '/no_think
+
+            你是ASTM E1527-21执业EP，任务：撰写第3章正文（ASTM Section 8）。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            输出示例结构：
+
+            ### 3.1 标准环境数据库检索
+
+            正文段落...
+
+
+            ### 3.2 历史运营情况
+
+            正文段落...
+
+
+            #### 3.2.1 早期使用
+
+            正文段落...
+
+
+            #### 3.2.2 近期使用
+
+            正文段落...
+
+
+            ### 3.3 监管档案
+
+            正文段落...'
+        - role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            历史使用摘要：{{#1771917764244.historical_use_summary#}}
+
+            数据库检索结果：{{#1771917764244.db_search_results#}}
+
+            检索日期：{{#1771917764244.db_search_date#}}
+
+            请撰写第3章正文。'
+        reasoning_format: separated
+        selected: false
+        title: 模块三-历史回顾
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module3_historical
+      position:
+        x: 300
+        y: -50
+      positionAbsolute:
+        x: 300
+        y: -50
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 2000
+            temperature: 0.3
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        prompt_template:
+        - role: system
+          text: '/no_think
+
+            你是ASTM E1527-21执业EP，任务：撰写第4章正文（ASTM Section 9）。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            输出示例结构：
+
+            ### 4.1 勘察方法
+
+            正文段落...
+
+
+            ### 4.2 现场观察记录
+
+
+            #### 4.2.1 主厂房
+
+            正文段落...
+
+
+            #### 4.2.2 储存区
+
+            正文段落...
+
+
+            ### 4.3 访问限制
+
+            正文段落...'
+        - role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            勘察日期：{{#1771917764244.recon_date#}}
+
+            天气：{{#1771917764244.weather_conditions#}}
+
+            陪同人员：{{#1771917764244.accompanied_by#}}
+
+            现场观察：{{#1771917764244.site_observations#}}
+
+            访问限制：{{#1771917764244.access_limitations#}}
+
+            请撰写第4章正文。'
+        reasoning_format: separated
+        selected: false
+        title: 模块四-现场勘察
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module4_recon
+      position:
+        x: 300
+        y: 50
+      positionAbsolute:
+        x: 300
+        y: 50
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 1500
+            temperature: 0.2
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        prompt_template:
+        - id: d2b13690-63e7-4886-9c5e-01d5c918c17f
+          role: system
+          text: '/no_think
+
+            你是ASTM E1527-21/E1903-19执业EP，任务：撰写「风险等级与不确定性」章节正文。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            【Phase II严格规定】
+
+            若「Phase II分析结果」字段为空，则严禁提及任何Phase II取样、检测或数据
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            本章章号由project_context中「Risk Chapter No」字段给出，按该章号输出节标题。
+
+
+            输出示例（假设章号为7）：
+
+            ### 7.1 总体风险等级
+
+            风险等级：HIGH
+
+            判断依据：xxx。
+
+
+            ### 7.2 费用估算
+
+            必要整改费用：xxx USD
+
+            潜在风险损失：xxx USD
+
+
+            ### 7.3 不确定因素
+
+            1. xxx
+
+            2. xxx'
+        - id: 8c95c76f-bcdf-4bf2-94fe-140ffbdcd235
+          role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            本章章号：{{#preprocessing.risk_chapter_num#}}
+
+
+            REC判断结果：
+
+            {{#1771918464293.text#}}
+
+
+            Phase II分析结果（如有，否则为空）：
+
+            {{#phase2_empty.output#}}
+
+
+            请撰写风险等级章节，节标题使用上方给出的章号。'
+        reasoning_format: separated
+        selected: false
+        title: 模块七-风险等级
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module7_risk
+      position:
+        x: 600
+        y: -100
+      positionAbsolute:
+        x: 600
+        y: -100
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 2000
+            temperature: 0.3
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        prompt_template:
+        - role: system
+          text: '/no_think
+
+            你是ASTM E1527-21/E1903-19执业EP，任务：撰写「结论与行动建议」章节正文。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            【Phase II严格规定】
+
+            若「Phase II分析结果」字段为空，则严禁提及任何Phase II内容
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            本章章号由project_context中「Conclusion Chapter No」字段给出。
+
+
+            输出示例（假设章号为8）：
+
+            ### 8.1 结论
+
+            本次评估结论：附条件推进。
+
+            1. 理由一
+
+            2. 理由二
+
+
+            ### 8.2 行动建议
+
+
+            #### 8.2.1 交割前必须完成（HIGH）
+
+            1. 具体行动，责任方：买方
+
+
+            #### 8.2.2 交割条件中约定（MED）
+
+            1. 具体行动，完成时限：交割后6个月
+
+
+            #### 8.2.3 交割后跟进（LOW）
+
+            1. 具体行动'
+        - role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            本章章号：{{#preprocessing.conclusion_chapter_num#}}
+
+
+            风险等级判断：
+
+            {{#module7_risk.text#}}
+
+
+            REC清单：
+
+            {{#1771918464293.text#}}
+
+
+            请撰写结论章节，节标题使用上方给出的章号。'
+        reasoning_format: separated
+        selected: false
+        title: 模块八-结论建议
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module8_conclusion
+      position:
+        x: 600
+        y: 0
+      positionAbsolute:
+        x: 600
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 1500
+            temperature: 0.2
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        prompt_template:
+        - role: system
+          text: '/no_think
+
+            你是ASTM E1527-21执业EP，任务：撰写第1章「执行摘要」正文。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            【Phase II严格规定】
+
+            若「Phase II分析结果」字段为空，则严禁提及任何Phase II取样、检测或数据，严禁出现「Phase II结果显示」「取样分析表明」等字样
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            输出示例结构：
+
+            ### 1.1 概况与结论
+
+            本次评估结论：附条件推进。[场地基本情况1-2句]。详见下方风险评估汇总表。
+
+
+            ### 1.2 关键发现
+
+            1. 关键发现（引用具体数据）...
+
+            2. ...
+
+            3. ...
+
+
+            字数不超过400字，不铺垫，不解释方法。'
+        - role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            【场地描述】
+
+            {{#module2_site.text#}}
+
+
+            【历史使用】
+
+            {{#module3_historical.text#}}
+
+
+            【现场勘察】
+
+            {{#module4_recon.text#}}
+
+
+            【REC判断】
+
+            {{#1771918464293.text#}}
+
+
+            【Phase II（如有）】
+
+            {{#phase2_empty.output#}}
+
+
+            【风险等级】
+
+            {{#module7_risk.text#}}
+
+
+            【结论建议】
+
+            {{#module8_conclusion.text#}}
+
+
+            请撰写执行摘要。'
+        reasoning_format: separated
+        selected: false
+        title: 模块一-执行摘要
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module1_executive
+      position:
+        x: 900
+        y: -50
+      positionAbsolute:
+        x: 900
+        y: -50
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: case_true
+          conditions:
+          - comparison_operator: is
+            value: 'yes'
+            variable_selector:
+            - '1771917764244'
+            - phase2_conducted
+          - comparison_operator: not empty
+            variable_selector:
+            - '1771917764244'
+            - phase2_sampling_data
+          id: 'true'
+          logical_operator: and
+          name: 开展Phase II
+        selected: false
+        title: Phase II条件判断
+        type: if-else
+      height: 150
+      id: phase2_ifelse
+      position:
+        x: 562.1798997135234
+        y: 274.92761559006
+      positionAbsolute:
+        x: 562.1798997135234
+        y: 274.92761559006
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 3000
+            temperature: 0.2
+          mode: chat
+          name: MiniMax-M2.5
+          provider: langgenius/minimax/minimax
+        outputs:
+        - children: null
+          value_type: string
+          variable: text
+        prompt_template:
+        - role: system
+          text: '/no_think
+
+            你是ASTM E1903-19执业EP，任务：撰写第6章正文。
+
+
+            【格式规则——严格遵守】
+
+            标题只用 ### 节 或 #### 小节，禁止输出 # 或 ##
+
+            列表只用 1. 2. 3. 编号，禁止用 - * • （1）
+
+            不使用第一人称
+
+            不输出开场白、结束语、解释性文字
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            输出示例结构：
+
+            ### 6.1 取样方案
+
+            正文段落...
+
+
+            ### 6.2 实验室结果
+
+
+            **Table 6-1 实验室检测结果汇总**
+
+
+            | 点位 | 深度(m) | 检测项目 | 检测值 | 筛选值 | 是否超标 |
+
+            |---|---|---|---|---|---|
+
+            | S1 | 0-0.5 | TPH | 1850 mg/kg | 826 mg/kg | 是 |
+
+
+            ### 6.3 与标准值对比
+
+            正文段落...
+
+
+            ### 6.4 污染范围初步判断
+
+            正文段落...'
+        - role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            Phase I REC判断：
+
+            {{#1771918464293.text#}}
+
+
+            Phase II取样数据：
+
+            {{#1771917764244.phase2_sampling_data#}}
+
+
+            筛选标准：{{#1771917764244.screening_criteria#}}
+
+            请撰写第6章正文。'
+        reasoning_format: separated
+        selected: false
+        title: 模块六-Phase II分析
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module6_phase2
+      position:
+        x: 1000
+        y: 300.1391392616267
+      positionAbsolute:
+        x: 1000
+        y: 300.1391392616267
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        output_type: string
+        selected: false
+        title: Phase II内容聚合
+        type: variable-aggregator
+        variables:
+        - - module6_phase2
+          - text
+        - - phase2_no
+          - chapter6_output
+      height: 135
+      id: phase2_empty
+      position:
+        x: 1269.2550835181787
+        y: 395.040052911012
+      positionAbsolute:
+        x: 1269.2550835181787
+        y: 395.040052911012
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "def main(**kwargs):\n    import json\n\n    property_name       = kwargs.get(\"\
+          property_name\", \"\")\n    property_address    = kwargs.get(\"property_address\"\
+          , \"\")\n    client_name         = kwargs.get(\"client_name\", \"\")\n \
+          \   assessment_date     = kwargs.get(\"assessment_date\", \"\")\n    report_no\
+          \           = kwargs.get(\"report_no\", \"\")\n    current_use         =\
+          \ kwargs.get(\"current_use\", \"\")\n    site_area           = kwargs.get(\"\
+          site_area\", \"\")\n    surrounding_land_use= kwargs.get(\"surrounding_land_use\"\
+          , \"\")\n    ep_name             = kwargs.get(\"ep_name\", \"\")\n    report_language\
+          \     = kwargs.get(\"report_language\", \"zh\").strip().lower()\n    phase2_conducted\
+          \    = kwargs.get(\"phase2_conducted\", \"no\").strip().lower()\n\n    has_phase2\
+          \ = (phase2_conducted == \"yes\")\n    risk_ch  = 7 if has_phase2 else 6\n\
+          \    conc_ch  = 8 if has_phase2 else 7\n\n    # 双语字段名，project_context始终双语（给模型参考）\n\
+          \    lines = [\n        \"- Property Name / 场地名称: \" + property_name,\n\
+          \        \"- Address / 地址: \" + property_address,\n        \"- Client /\
+          \ 委托方: \" + client_name,\n        \"- Assessment Date / 评估日期: \" + assessment_date,\n\
+          \        \"- Report No / 报告编号: \" + report_no,\n        \"- Current Use\
+          \ / 当前用途: \" + current_use,\n        \"- Site Area / 场地面积: \" + site_area,\n\
+          \        \"- Surrounding Land Use / 周边用地: \" + surrounding_land_use,\n \
+          \       \"- EP: \" + ep_name,\n        \"- Has Phase II / 含二阶段: \" + (\"\
+          Yes\" if has_phase2 else \"No\"),\n        \"- Risk Chapter No / 风险等级章号:\
+          \ \" + str(risk_ch),\n        \"- Conclusion Chapter No / 结论章号: \" + str(conc_ch),\n\
+          \    ]\n    project_context = \"\\n\".join(lines)\n\n    if report_language\
+          \ == \"en\":\n        language_instruction = (\n            \"[Language]\
+          \ Output in English only. No Chinese characters.\\n\"\n            \"All\
+          \ section headings in English only.\"\n        )\n    else:\n        language_instruction\
+          \ = (\n            \"【语言要求】全文使用中文输出，专业英文缩写（如REC、ASTM、TPH）可保留。\\n\"\n   \
+          \         \"所有小节标题只用中文，不加英文副标题。\"\n        )\n\n    return {\n        \"\
+          project_context\":    project_context,\n        \"language_instruction\"\
+          : language_instruction,\n        \"risk_chapter_num\":   str(risk_ch),\n\
+          \        \"conclusion_chapter_num\": str(conc_ch),\n    }\n"
+        code_language: python3
+        outputs:
+          conclusion_chapter_num:
+            children: null
+            type: string
+          language_instruction:
+            children: null
+            type: string
+          project_context:
+            children: null
+            type: string
+          risk_chapter_num:
+            children: null
+            type: string
+        selected: false
+        title: 变量预处理
+        type: code
+        variables:
+        - value_selector:
+          - '1771917764244'
+          - property_name
+          value_type: string
+          variable: property_name
+        - value_selector:
+          - '1771917764244'
+          - property_address
+          value_type: string
+          variable: property_address
+        - value_selector:
+          - '1771917764244'
+          - client_name
+          value_type: string
+          variable: client_name
+        - value_selector:
+          - '1771917764244'
+          - assessment_date
+          value_type: string
+          variable: assessment_date
+        - value_selector:
+          - '1771917764244'
+          - report_no
+          value_type: string
+          variable: report_no
+        - value_selector:
+          - '1771917764244'
+          - current_use
+          value_type: string
+          variable: current_use
+        - value_selector:
+          - '1771917764244'
+          - site_area
+          value_type: string
+          variable: site_area
+        - value_selector:
+          - '1771917764244'
+          - surrounding_land_use
+          value_type: string
+          variable: surrounding_land_use
+        - value_selector:
+          - '1771917764244'
+          - ep_name
+          value_type: string
+          variable: ep_name
+        - value_selector:
+          - '1771917764244'
+          - report_language
+          value_type: string
+          variable: report_language
+        - value_selector:
+          - '1771917764244'
+          - phase2_conducted
+          value_type: string
+          variable: phase2_conducted
+      height: 52
+      id: preprocessing
+      position:
+        x: 300
+        y: -250
+      positionAbsolute:
+        x: 300
+        y: -250
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "def main(**kwargs):\n    report_no       = kwargs.get(\"report_no\"\
+          , \"N/A\")\n    property_name   = kwargs.get(\"property_name\", \"N/A\"\
+          )\n    client_name     = kwargs.get(\"client_name\", \"N/A\")\n    assessment_date\
+          \ = kwargs.get(\"assessment_date\", \"N/A\")\n    report_date     = kwargs.get(\"\
+          report_date\", \"N/A\")\n    ep_name         = kwargs.get(\"ep_name\", \"\
+          N/A\")\n    lang            = str(kwargs.get(\"report_language\", \"zh\"\
+          )).strip().lower()\n    chapter1    = kwargs.get(\"module1_text\", \"\"\
+          )\n    chapter2    = kwargs.get(\"module2_text\", \"\")\n    chapter3  \
+          \  = kwargs.get(\"module3_text\", \"\")\n    chapter4    = kwargs.get(\"\
+          module4_text\", \"\")\n    chapter5    = kwargs.get(\"module5_text\", \"\
+          \")\n    chapter6    = kwargs.get(\"chapter6_output\", \"\")\n    chapter7\
+          \    = kwargs.get(\"module7_text\", \"\")\n    chapter8    = kwargs.get(\"\
+          module8_text\", \"\")\n    risk_table  = kwargs.get(\"risk_table_text\"\
+          , \"\")\n\n    phase2_conducted = kwargs.get(\"phase2_conducted\", \"no\"\
+          ).strip().lower()\n    has_phase2 = (phase2_conducted == \"yes\") and bool(chapter6\
+          \ and chapter6.strip())\n\n    import re\n    def clean(text):\n       \
+          \ text = re.sub(r'PHASE2_RECOMMENDED:\\s*(YES|NO)\\s*', '', text)\n    \
+          \    text = re.sub(r'OVERALL_RISK:\\s*\\S+\\s*', '', text)\n        text\
+          \ = re.sub(r'TRANSACTION_REC:\\s*\\S+\\s*', '', text)\n        return text.strip()\n\
+          \n    chapter1 = clean(chapter1)\n    chapter2 = clean(chapter2)\n    chapter3\
+          \ = clean(chapter3)\n    chapter4 = clean(chapter4)\n    chapter5 = clean(chapter5)\n\
+          \    chapter6 = clean(chapter6)\n    chapter7 = clean(chapter7)\n    chapter8\
+          \ = clean(chapter8)\n\n    def ch_title(num, zh, en):\n        # 章标题：##\
+          \ 1. 执行摘要 或 ## 1. Executive Summary\n        if lang == \"en\":\n      \
+          \      return \"## \" + str(num) + \". \" + en\n        else:\n        \
+          \    return \"## \" + str(num) + \". \" + zh\n\n    # 封面\n    if lang ==\
+          \ \"en\":\n        header  = \"# Environmental Site Assessment Report\\\
+          n\\n\"\n        header += \"| | |\\n|---|---|\\n\"\n        header += \"\
+          | **Report No.** | \" + report_no + \" |\\n\"\n        header += \"| **Property**\
+          \ | \" + property_name + \" |\\n\"\n        header += \"| **Client** | \"\
+          \ + client_name + \" |\\n\"\n        header += \"| **Assessment Date** |\
+          \ \" + assessment_date + \" |\\n\"\n        header += \"| **Report Date**\
+          \ | \" + report_date + \" |\\n\"\n        header += \"| **EP** | \" + ep_name\
+          \ + \" |\\n\"\n        header += \"| **Standard** | ASTM E1527-21 / ASTM\
+          \ E1903-19 / EPA AAI Rule |\\n\"\n    else:\n        header  = \"# 环境尽职调查报告\\\
+          n\\n\"\n        header += \"| | |\\n|---|---|\\n\"\n        header += \"\
+          | **报告编号** | \" + report_no + \" |\\n\"\n        header += \"| **项目名称**\
+          \ | \" + property_name + \" |\\n\"\n        header += \"| **委托方** | \" +\
+          \ client_name + \" |\\n\"\n        header += \"| **评估日期** | \" + assessment_date\
+          \ + \" |\\n\"\n        header += \"| **报告日期** | \" + report_date + \" |\\\
+          n\"\n        header += \"| **执行EP** | \" + ep_name + \" |\\n\"\n       \
+          \ header += \"| **适用规范** | ASTM E1527-21 / ASTM E1903-19 / EPA AAI Rule\
+          \ |\\n\"\n    header += \"\\n---\\n\\n\"\n\n    # 风险汇总表（插入第一章末尾，三级标题）\n\
+          \    if risk_table and risk_table.strip():\n        if lang == \"en\":\n\
+          \            risk_section = \"\\n### 1.3 Risk Assessment Summary\\n\\n\"\
+          \ + risk_table.strip() + \"\\n\\n\"\n        else:\n            risk_section\
+          \ = \"\\n### 1.3 风险评估汇总表\\n\\n\" + risk_table.strip() + \"\\n\\n\"\n   \
+          \ else:\n        risk_section = \"\"\n\n    # 正文章节（## 章标题 + 模型输出的 ### 节标题）\n\
+          \    if has_phase2:\n        body  = ch_title(1,\"执行摘要\",\"Executive Summary\"\
+          ) + \"\\n\\n\" + chapter1 + risk_section + \"\\n\\n---\\n\\n\"\n       \
+          \ body += ch_title(2,\"场地描述与项目背景\",\"Site Description & Project Background\"\
+          ) + \"\\n\\n\" + chapter2 + \"\\n\\n---\\n\\n\"\n        body += ch_title(3,\"\
+          历史使用与文献回顾\",\"Historical Use & Records Review\") + \"\\n\\n\" + chapter3\
+          \ + \"\\n\\n---\\n\\n\"\n        body += ch_title(4,\"现场勘察记录\",\"Site Reconnaissance\"\
+          ) + \"\\n\\n\" + chapter4 + \"\\n\\n---\\n\\n\"\n        body += ch_title(5,\"\
+          污染识别与REC判断\",\"Findings & REC Identification\") + \"\\n\\n\" + chapter5\
+          \ + \"\\n\\n---\\n\\n\"\n        body += ch_title(6,\"Phase II取样与实验室分析\"\
+          ,\"Phase II Sampling & Laboratory Analysis\") + \"\\n\\n\" + chapter6 +\
+          \ \"\\n\\n---\\n\\n\"\n        body += ch_title(7,\"风险等级与不确定性\",\"Risk Rating\
+          \ & Uncertainty\") + \"\\n\\n\" + chapter7 + \"\\n\\n---\\n\\n\"\n     \
+          \   body += ch_title(8,\"结论与行动建议\",\"Conclusions & Recommendations\") +\
+          \ \"\\n\\n\" + chapter8 + \"\\n\\n---\\n\\n\"\n    else:\n        body \
+          \ = ch_title(1,\"执行摘要\",\"Executive Summary\") + \"\\n\\n\" + chapter1 +\
+          \ risk_section + \"\\n\\n---\\n\\n\"\n        body += ch_title(2,\"场地描述与项目背景\"\
+          ,\"Site Description & Project Background\") + \"\\n\\n\" + chapter2 + \"\
+          \\n\\n---\\n\\n\"\n        body += ch_title(3,\"历史使用与文献回顾\",\"Historical\
+          \ Use & Records Review\") + \"\\n\\n\" + chapter3 + \"\\n\\n---\\n\\n\"\n\
+          \        body += ch_title(4,\"现场勘察记录\",\"Site Reconnaissance\") + \"\\n\\\
+          n\" + chapter4 + \"\\n\\n---\\n\\n\"\n        body += ch_title(5,\"污染识别与REC判断\"\
+          ,\"Findings & REC Identification\") + \"\\n\\n\" + chapter5 + \"\\n\\n---\\\
+          n\\n\"\n        body += ch_title(6,\"风险等级与不确定性\",\"Risk Rating & Uncertainty\"\
+          ) + \"\\n\\n\" + chapter7 + \"\\n\\n---\\n\\n\"\n        body += ch_title(7,\"\
+          结论与行动建议\",\"Conclusions & Recommendations\") + \"\\n\\n\" + chapter8 + \"\
+          \\n\\n---\\n\\n\"\n\n    footer = \"*\" + report_no + \" | \" + report_date\
+          \ + \" | \" + ep_name + \"*\"\n    return {\"final_report\": header + body\
+          \ + footer}\n"
+        code_language: python3
+        outputs:
+          final_report:
+            children: null
+            type: string
+        selected: false
+        title: 报告拼接
+        type: code
+        variables:
+        - value_selector:
+          - '1771917764244'
+          - report_no
+          value_type: string
+          variable: report_no
+        - value_selector:
+          - '1771917764244'
+          - property_name
+          value_type: string
+          variable: property_name
+        - value_selector:
+          - '1771917764244'
+          - client_name
+          value_type: string
+          variable: client_name
+        - value_selector:
+          - '1771917764244'
+          - assessment_date
+          value_type: string
+          variable: assessment_date
+        - value_selector:
+          - '1771917764244'
+          - report_date
+          value_type: string
+          variable: report_date
+        - value_selector:
+          - '1771917764244'
+          - ep_name
+          value_type: string
+          variable: ep_name
+        - value_selector:
+          - module1_executive
+          - text
+          value_type: string
+          variable: module1_text
+        - value_selector:
+          - module2_site
+          - text
+          value_type: string
+          variable: module2_text
+        - value_selector:
+          - module3_historical
+          - text
+          value_type: string
+          variable: module3_text
+        - value_selector:
+          - module4_recon
+          - text
+          value_type: string
+          variable: module4_text
+        - value_selector:
+          - '1771918464293'
+          - text
+          value_type: string
+          variable: module5_text
+        - value_selector:
+          - phase2_empty
+          - output
+          value_type: string
+          variable: chapter6_output
+        - value_selector:
+          - module7_risk
+          - text
+          value_type: string
+          variable: module7_text
+        - value_selector:
+          - module8_conclusion
+          - text
+          value_type: string
+          variable: module8_text
+        - value_selector:
+          - '1771917764244'
+          - report_language
+          value_type: string
+          variable: report_language
+        - value_selector:
+          - module_risk_table
+          - text
+          value_type: string
+          variable: risk_table_text
+        - value_selector:
+          - '1771917764244'
+          - phase2_conducted
+          value_type: string
+          variable: phase2_conducted
+      height: 52
+      id: report_merge
+      position:
+        x: 1200
+        y: -50
+      positionAbsolute:
+        x: 1200
+        y: -50
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            max_tokens: 2000
+            temperature: 0.1
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        outputs:
+        - children: null
+          value_type: string
+          variable: text
+        prompt_template:
+        - id: 599b95da-5352-4f1e-8cd6-b007d752c281
+          role: system
+          text: '/no_think
+
+
+
+            你是具备ASTM E1527-21/E1903-19执业资格的环境专业人员（EP）。
+
+            当前任务：根据调查发现，生成风险评估汇总表（Risk Assessment Summary）。
+
+
+            【输出格式要求】
+
+            严格按照以下Markdown表格格式输出，不加任何说明文字，只输出表格本身，表头和分类要严格遵守语言指令，中文模式用中文，英文模式用英文：
+
+
+            | No | Risk | Category | Findings | Suggestion | Must Cost (USD) | Potential
+            Risk Cost (USD) | Ranking |
+
+            |---|---|---|---|---|---|---|---|
+
+            | 1 | 风险名称 | Environmental | 发现描述（简洁，1-2句） | 具体可执行建议 | 估算金额或范围 | 估算金额或范围
+            | HIGH/MED/LOW |
+
+
+            {{#preprocessing.language_instruction#}}
+
+
+            【填写规则】
+
+            - No：按风险重要性排序，HIGH排前，LOW排后
+
+            - Risk：风险简称（3-6个字，中文模式用中文，英文模式用英文）
+
+            - Category：Environmental 环境/ Geotechnical 岩土/ Regulatory 规范/ Health&Safety
+            健康与安全四选一
+
+            - Findings：基于实际调查数据，不虚构，1-2句话
+
+            - Suggestion：具体可执行的行动，不写「建议进一步研究」
+
+            - Must Cost：整改必须发生的费用估算（USD），给范围如「50,000-100,000」，无法估算填「TBD」
+
+            - Potential Risk Cost：若不处理可能产生的损失估算（USD），无法估算填「TBD」
+
+            - Ranking：HIGH=交割前必须解决 / MED=交割条件中约定 / LOW=交割后跟进
+
+            - 覆盖所有REC和Phase II超标项，不遗漏
+
+            - 语言严格遵守语言指令'
+        - id: 90f1231e-1213-4007-9023-811800f0c23d
+          role: user
+          text: '{{#preprocessing.project_context#}}
+
+
+            【Phase I REC判断结果】
+
+            {{#1771918464293.text#}}
+
+
+            【Phase II分析结果（如有）】
+
+            {{#phase2_empty.output#}}
+
+
+            【风险等级判断】
+
+            {{#module7_risk.text#}}
+
+
+            请生成Risk Assessment Summary表格，覆盖所有已识别风险点。'
+        selected: false
+        title: 风险汇总表
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: module_risk_table
+      position:
+        x: 1000
+        y: -192.80067078470736
+      positionAbsolute:
+        x: 1000
+        y: -192.80067078470736
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "def main(**kwargs):\n    return {'chapter6_output': ''}\n"
+        code_language: python3
+        desc: FALSE分支：输出空字符串，供变量聚合节点使用
+        outputs:
+          chapter6_output:
+            children: null
+            type: string
+        selected: false
+        title: Phase II内容为空
+        type: code
+        variables: []
+      height: 96
+      id: phase2_no
+      position:
+        x: 900
+        y: 600
+      positionAbsolute:
+        x: 900
+        y: 600
+      selected: false
+      type: custom
+      width: 242
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-43
+            key: ''
+            type: text
+            value: '{"markdown": "{{#report_merge.final_report#}}", "report_no": "{{#1771917764244.report_no#}}",
+              "property_name": "{{#1771917764244.property_name#}}", "filename": "{{#1771917764244.report_no#}}_ESA_Report.docx"}'
+          type: json
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://pandoc-api:5050/convert
+        variables: []
+      height: 137
+      id: '1772347826454'
+      position:
+        x: 1314.2828654339917
+        y: 144.82485027439813
+      positionAbsolute:
+        x: 1314.2828654339917
+        y: 144.82485027439813
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "import json\n\ndef main(**kwargs):\n    body = kwargs.get('body', '{}')\n\
+          \    result = json.loads(body)\n    download_url = result.get('download_url',\
+          \ '')\n    filename = result.get('filename', '')\n    return {\n    'download_url':\
+          \ '报告已生成，下载链接：' + download_url,\n    'filename': filename\n    }   "
+        code_language: python3
+        outputs:
+          download_url:
+            children: null
+            type: string
+          filename:
+            children: null
+            type: string
+        selected: true
+        title: 代码执行 4
+        type: code
+        variables:
+        - value_selector:
+          - '1772347826454'
+          - body
+          value_type: string
+          variable: body
+      height: 52
+      id: '1772348718748'
+      position:
+        x: 1722.7928502264638
+        y: 136.4331537779674
+      positionAbsolute:
+        x: 1722.7928502264638
+        y: 136.4331537779674
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -689.8230783493095
+      y: 212.82414293251662
+      zoom: 0.6189951454187274
+  rag_pipeline_variables: []

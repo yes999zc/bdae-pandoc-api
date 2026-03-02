@@ -1,0 +1,3 @@
+Flask>=2.0.0
+python-docx>=0.8.11
+pandoc-binary>=2.14  # 或系统安装 pandoc
